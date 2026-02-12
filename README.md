@@ -12,7 +12,7 @@ Work with Web3 technologies and integrate blockchain functionality into a decent
 
 1. **Create a New API Endpoint**
 
-   - Add a new API endpoint in `index.js` named:
+   - Add a new API endpoint in `src/index.js` named:
 
      ```
      [Name]ApiTest
@@ -62,6 +62,8 @@ You may use any blockchain provider such as:
 Keep your code **clean, simple, and easy to review**.
 
 Handle errors gracefully where possible.
+
+Complete the task within the provided assessment project only and do not use a separate codebase.
 
 ---
 ## 🚀 Quick Start Guide
