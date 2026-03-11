@@ -27,7 +27,7 @@ const CHAINLINK_ABI = [
     },
     {
         inputs: [],
-        name: 'decimals',
+        name: 'description',
         outputs: [{internalType: 'uint8', name:'', type: 'string'}],
         stateMutability: 'view',
         type: 'function',
@@ -38,7 +38,7 @@ const CHAINLINK_ABI = [
 const CHAINLINK_ETH_USD_ADDRESS ='0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419';
 
 router.get('/', async (req, res, next) => 
-{{
+{ try {
     const provider = new ethers.JsonRpcProvider('https://eth.llamarpc.com');
 
     const priceFeed = new ethers.Contract(
@@ -53,7 +53,7 @@ router.get('/', async (req, res, next) =>
         priceFeed.latestRoundData()
     ]);
     
-    const {roundId, answer, updatedAt} = roundData;
+    const [roundId, answer, startedAt, updatedAt] = roundData;
 
     const price = (Number(answer) / 10 ** Number(decimals)).toFixed(2);
     const UpdatedAtISO = new Date(Number(updatedAt) * 1000).toISOString();
@@ -74,6 +74,8 @@ router.get('/', async (req, res, next) =>
     console.log('========================\n')
 
     res.json(result); 
+} catch (err){
+    console.error('[ChainlinkApiTest] error fetching', err.message)
 }
 })
 
